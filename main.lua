@@ -29,7 +29,7 @@ function love.load()
 end
 
 
-function love.update()
+function love.update(dt)
     GAME.players[1]:update(dt)
     GAME.players[2]:update(dt)
     GAME.ball:update(dt)
@@ -42,10 +42,26 @@ function love.draw()
     GAME.ball:draw()
 end
 
-function love.keypressed()
-    -- ...
+function love.keypressed(key)
+    if key == "w" then
+        GAME.players[1].velocity = -1
+    elseif key == "s" then
+        GAME.players[1].velocity = 1
+    end
+
+    if key == "up" then
+        GAME.players[2].velocity = -1
+    elseif key == "down" then
+        GAME.players[2].velocity = 1
+    end
 end
 
-function love.keyreleased()
-    -- ...
+function love.keyreleased(key)
+    if not love.keyboard.isDown("w") and not love.keyboard.isDown("s") then
+        GAME.players[1].velocity = 0
+    end
+
+    if not love.keyboard.isDown("up") and not love.keyboard.isDown("down") then
+        GAME.players[2].velocity = 0
+    end
 end
