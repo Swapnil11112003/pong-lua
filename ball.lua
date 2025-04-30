@@ -9,15 +9,23 @@ function Ball.new()
         
     ball.pos = { 
         x = xPos, 
-        y = yPos 
+        y = yPos ,
     }
+
     ball.diam = 10
+    ball.speed = 400
+
+    ball.velocity = {
+        x = (xPos % 2 == 0) and 1 or -1,
+        y = (yPos % 2 == 0) and 1 or -1,
+    }
 
     return ball
 end
 
 function Ball:update(dt)
-
+    self.pos.x = self.pos.x + self.speed * dt * self.velocity.x
+    self.pos.y = self.pos.y + self.speed * dt * self.velocity.y
 end
 
 function Ball:draw()
