@@ -34,7 +34,10 @@ function love.update()
 end
 
 function love.draw()
-    -- ...
+    
+    GAME.players[1]:draw()
+    GAME.players[2]:draw()
+    GAME.ball:draw()
 end
 
 function love.keypressed()
