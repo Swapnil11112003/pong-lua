@@ -26,6 +26,14 @@ function Player:update(dt)
     self.pos.y = self.pos.y + self.speed * self.velocity * dt
     self.edge.top = self.pos.y
     self.edge.bottom = self.pos.y + GAME.paddle.l
+
+    if self.edge.top < GAME.bounds.top - GAME.paddle.l/2 then
+        self.pos.y = GAME.bounds.top - GAME.paddle.l/2
+    end
+    
+    if self.edge.bottom > GAME.bounds.bottom + GAME.paddle.l/2 then
+        self.pos.y = GAME.bounds.bottom - GAME.paddle.l/2
+    end
 end
 
 function Player:draw()

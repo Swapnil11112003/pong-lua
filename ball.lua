@@ -26,6 +26,14 @@ end
 function Ball:update(dt)
     self.pos.x = self.pos.x + self.speed * dt * self.velocity.x
     self.pos.y = self.pos.y + self.speed * dt * self.velocity.y
+
+    if self.pos.y < GAME.bounds.top then
+        self.pos.y = GAME.bounds.top
+        self.velocity.y = self.velocity.y * -1
+    elseif self.pos.y + self.diam > GAME.bounds.bottom then
+        self.pos.y = GAME.bounds.bottom - self.diam
+        self.velocity.y = self.velocity.y * -1
+    end
 end
 
 function Ball:draw()

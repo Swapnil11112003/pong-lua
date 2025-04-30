@@ -33,6 +33,21 @@ function love.update(dt)
     GAME.players[1]:update(dt)
     GAME.players[2]:update(dt)
     GAME.ball:update(dt)
+
+    for _, player in pairs(GAME.players) do
+        local xIntersects = GAME.ball.pos.x + GAME.ball.diam > player.edge.left and GAME.ball.pos.x < player.edge.right
+        local yIntersects = GAME.ball.pos.y + GAME.ball.diam > player.edge.top and GAME.ball.pos.y < player.edge.bottom
+
+        if xIntersects and yIntersects then
+            GAME.ball.velocity.x = GAME.ball.velocity.x * -1
+
+            if GAME.ball.velocity.x > 0 then
+                GAME.ball.pos.x = player.edge.right
+            else
+                GAME.ball.pos.x = player.edge.left - GAME.ball.diam
+            end
+        end
+    end
 end
 
 function love.draw()
