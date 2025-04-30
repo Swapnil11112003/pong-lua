@@ -30,11 +30,13 @@ end
 
 
 function love.update()
-    -- ...
+    GAME.players[1]:update(dt)
+    GAME.players[2]:update(dt)
+    GAME.ball:update(dt)
 end
 
 function love.draw()
-    
+
     GAME.players[1]:draw()
     GAME.players[2]:draw()
     GAME.ball:draw()

@@ -16,11 +16,16 @@ function Player.new(xPos, yPos)
         bottom = player.pos.y + GAME.paddle.l,
     }
 
+    player.speed = 400
+    player.velocity = 0
+
     return player
 end
 
 function Player:update(dt)
-
+    self.pos.y = self.pos.y + self.speed * self.velocity * dt
+    self.edge.top = self.pos.y
+    self.edge.bottom = self.pos.y + GAME.paddle.l
 end
 
 function Player:draw()
